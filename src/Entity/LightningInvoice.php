@@ -10,7 +10,7 @@ namespace NGUtech\Lightning\Entity;
 
 use Daikon\Entity\Attribute;
 use Daikon\Entity\AttributeMap;
-use Daikon\Entity\EntityTrait;
+use Daikon\Entity\Entity;
 use Daikon\Money\Entity\TransactionInterface;
 use Daikon\ValueObject\FloatValue;
 use Daikon\ValueObject\IntValue;
@@ -20,10 +20,8 @@ use NGUtech\Bitcoin\ValueObject\Hash;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
 use NGUtech\Lightning\ValueObject\Request;
 
-final class LightningInvoice implements TransactionInterface
+final class LightningInvoice extends Entity implements TransactionInterface
 {
-    use EntityTrait;
-
     public static function getAttributeMap(): AttributeMap
     {
         return new AttributeMap([

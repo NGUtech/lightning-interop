@@ -523,12 +523,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/daikon-cqrs/entity.git",
-                "reference": "4924164dae26fb5c2a95fcb9184072c9afda17d7"
+                "reference": "fe72a688c1591766a886bde77df5a0a23c940094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/4924164dae26fb5c2a95fcb9184072c9afda17d7",
-                "reference": "4924164dae26fb5c2a95fcb9184072c9afda17d7",
+                "url": "https://api.github.com/repos/daikon-cqrs/entity/zipball/fe72a688c1591766a886bde77df5a0a23c940094",
+                "reference": "fe72a688c1591766a886bde77df5a0a23c940094",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +560,7 @@
                 "attribute",
                 "entity"
             ],
-            "time": "2020-08-17T19:05:25+00:00"
+            "time": "2020-08-17T21:54:36+00:00"
         },
         {
             "name": "daikon/event-sourcing",
@@ -2394,12 +2394,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NGUtech/bitcoin-interop.git",
-                "reference": "d58243d1db7cd81a4a70be4ab806e16ab60f23ee"
+                "reference": "a80d444377742bfd0fa8e22f68f09f82665ce0d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NGUtech/bitcoin-interop/zipball/d58243d1db7cd81a4a70be4ab806e16ab60f23ee",
-                "reference": "d58243d1db7cd81a4a70be4ab806e16ab60f23ee",
+                "url": "https://api.github.com/repos/NGUtech/bitcoin-interop/zipball/a80d444377742bfd0fa8e22f68f09f82665ce0d8",
+                "reference": "a80d444377742bfd0fa8e22f68f09f82665ce0d8",
                 "shasum": ""
             },
             "require": {
@@ -2436,7 +2436,7 @@
                 "interop",
                 "transaction"
             ],
-            "time": "2020-08-17T21:17:19+00:00"
+            "time": "2020-08-17T22:05:43+00:00"
         },
         {
             "name": "paragonie/random_compat",

@@ -33,7 +33,7 @@ trait LightningInvoiceMessageTrait
 
     private ?IntValue $cltvExpiry;
 
-    /** @var array $state */
+    /** @param array $state */
     public static function fromNative($state): self
     {
         Assertion::isArray($state);

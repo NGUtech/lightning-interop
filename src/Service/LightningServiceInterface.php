@@ -25,9 +25,10 @@ interface LightningServiceInterface extends PaymentServiceInterface
 
     public function decode(Request $request): LightningInvoice;
 
-    public function getInvoice(string $preimageHash): LightningInvoice;
+    //Using string param here because of differences in service impls
+    public function getInvoice(string $preimageHash): ?LightningInvoice;
 
-    public function getPayment(Hash $preimageHash): LightningPayment;
+    public function getPayment(Hash $preimageHash): ?LightningPayment;
 
     public function getInfo(): array;
 }

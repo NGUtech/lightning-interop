@@ -10,18 +10,24 @@ namespace NGUtech\Lightning\Service;
 
 use Daikon\Money\Service\PaymentServiceInterface;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
+use NGUtech\Bitcoin\ValueObject\Hash;
 use NGUtech\Lightning\Entity\LightningInvoice;
+use NGUtech\Lightning\Entity\LightningPayment;
 use NGUtech\Lightning\ValueObject\Request;
 
 interface LightningServiceInterface extends PaymentServiceInterface
 {
     public function request(LightningInvoice $invoice): LightningInvoice;
 
-    public function send(LightningInvoice $invoice): LightningInvoice;
+    public function send(LightningPayment $payment): LightningPayment;
 
-    public function estimateFee(LightningInvoice $invoice): Bitcoin;
+    public function estimateFee(LightningPayment $payment): Bitcoin;
 
     public function decode(Request $request): LightningInvoice;
+
+    public function getInvoice(string $preimageHash): LightningInvoice;
+
+    public function getPayment(Hash $preimageHash): LightningPayment;
 
     public function getInfo(): array;
 }

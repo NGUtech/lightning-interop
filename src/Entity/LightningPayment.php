@@ -12,15 +12,15 @@ use Daikon\Entity\Attribute;
 use Daikon\Entity\AttributeMap;
 use Daikon\Entity\Entity;
 use Daikon\Money\Entity\TransactionInterface;
-use Daikon\ValueObject\IntValue;
+use Daikon\ValueObject\FloatValue;
 use Daikon\ValueObject\Text;
 use Daikon\ValueObject\Timestamp;
 use NGUtech\Bitcoin\ValueObject\Hash;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
-use NGUtech\Lightning\ValueObject\InvoiceState;
+use NGUtech\Lightning\ValueObject\PaymentState;
 use NGUtech\Lightning\ValueObject\Request;
 
-final class LightningInvoice extends Entity implements TransactionInterface
+final class LightningPayment extends Entity implements TransactionInterface
 {
     public static function getAttributeMap(): AttributeMap
     {
@@ -30,14 +30,13 @@ final class LightningInvoice extends Entity implements TransactionInterface
             Attribute::define('request', Request::class),
             Attribute::define('destination', Text::class),
             Attribute::define('amount', Bitcoin::class),
+            Attribute::define('feeLimit', FloatValue::class),
+            Attribute::define('feeEstimate', Bitcoin::class),
+            Attribute::define('feeSettled', Bitcoin::class),
             Attribute::define('label', Text::class),
             Attribute::define('description', Text::class),
-            Attribute::define('expiry', IntValue::class),
-            Attribute::define('cltvExpiry', IntValue::class),
-            Attribute::define('blockHeight', IntValue::class),
-            Attribute::define('state', InvoiceState::class),
+            Attribute::define('state', PaymentState::class),
             Attribute::define('createdAt', Timestamp::class),
-            Attribute::define('settledAt', Timestamp::class),
         ]);
     }
 
@@ -71,6 +70,26 @@ final class LightningInvoice extends Entity implements TransactionInterface
         return $this->get('amount') ?? Bitcoin::makeEmpty();
     }
 
+    public function getFeeLimit(): FloatValue
+    {
+        return $this->get('feeLimit') ?? FloatValue::zero();
+    }
+
+    public function getFeeEstimate(): Bitcoin
+    {
+        return $this->get('feeEstimate') ?? Bitcoin::makeEmpty();
+    }
+
+    public function getFeeSettled(): Bitcoin
+    {
+        return $this->get('feeSettled') ?? Bitcoin::makeEmpty();
+    }
+
+    public function getFeeRefund(): Bitcoin
+    {
+        return $this->getFeeEstimate()->subtract($this->getFeeSettled());
+    }
+
     public function getLabel(): Text
     {
         return $this->get('label') ?? Text::makeEmpty();
@@ -81,49 +100,13 @@ final class LightningInvoice extends Entity implements TransactionInterface
         return $this->get('description') ?? Text::makeEmpty();
     }
 
-    public function getExpiry(): IntValue
+    public function getState(): PaymentState
     {
-        return $this->get('expiry') ?? IntValue::fromNative(86400);
-    }
-
-    public function getCltvExpiry(): IntValue
-    {
-        return $this->get('cltvExpiry') ?? IntValue::fromNative(10);
-    }
-
-    public function getBlockHeight(): IntValue
-    {
-        return $this->get('blockHeight') ?? IntValue::makeEmpty();
-    }
-
-    public function getExpiryHeight(): IntValue
-    {
-        //@todo handle error cases
-        return $this->getBlockHeight()->add($this->getCltvExpiry());
-    }
-
-    public function getState(): InvoiceState
-    {
-        return $this->get('state') ?? InvoiceState::makeEmpty();
+        return $this->get('state') ?? PaymentState::makeEmpty();
     }
 
     public function getCreatedAt(): Timestamp
     {
         return $this->get('createdAt') ?? Timestamp::makeEmpty();
-    }
-
-    public function getExpiresAt(): Timestamp
-    {
-        return $this->getCreatedAt()->modify("+{$this->getExpiry()} seconds");
-    }
-
-    public function hasExpired(Timestamp $time): bool
-    {
-        return $this->getExpiresAt()->isBefore($time);
-    }
-
-    public function getSettledAt(): Timestamp
-    {
-        return $this->get('settledAt') ?? Timestamp::makeEmpty();
     }
 }

@@ -8,20 +8,21 @@
 
 namespace NGUtech\Lightning\ValueObject;
 
+use Daikon\Interop\Assert;
 use Daikon\Interop\Assertion;
 use Daikon\Interop\MakeEmptyInterface;
 use Daikon\ValueObject\ValueObjectInterface;
 
 final class Request implements MakeEmptyInterface, ValueObjectInterface
 {
-    private string $request;
+    private ?string $request;
 
     /** @param string|null $value */
     public static function fromNative($value): self
     {
         //@todo improve request validation
-        Assertion::nullOrString($value, 'Must be a string.');
-        return empty($value) ? new self : new self($value);
+        Assert::that($value, 'Must be a string.')->nullOr()->string()->notBlank();
+        return new self($value);
     }
 
     public static function makeEmpty(): self
@@ -31,7 +32,7 @@ final class Request implements MakeEmptyInterface, ValueObjectInterface
 
     public function isEmpty(): bool
     {
-        return empty($this->request);
+        return $this->request === null;
     }
 
     /** @param self $comparator */
@@ -41,7 +42,7 @@ final class Request implements MakeEmptyInterface, ValueObjectInterface
         return $this->toNative() === $comparator->toNative();
     }
 
-    public function toNative(): string
+    public function toNative(): ?string
     {
         return $this->request;
     }
@@ -51,7 +52,7 @@ final class Request implements MakeEmptyInterface, ValueObjectInterface
         return (string)$this->request;
     }
 
-    private function __construct(string $request = '')
+    private function __construct(?string $request = null)
     {
         $this->request = $request;
     }

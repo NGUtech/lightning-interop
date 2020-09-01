@@ -8,7 +8,7 @@
 
 namespace NGUtech\Lightning\Message;
 
-use Daikon\ValueObject\IntValue;
+use Daikon\ValueObject\Natural;
 use Daikon\ValueObject\Text;
 use Daikon\ValueObject\Timestamp;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
@@ -30,5 +30,5 @@ interface LightningInvoiceMessageInterface extends LightningMessageInterface
 
     public function getTimestamp(): ?Timestamp;
 
-    public function getCltvExpiry(): ?IntValue;
+    public function getCltvExpiry(): ?Natural;
 }

@@ -12,7 +12,7 @@ use Daikon\Entity\Attribute;
 use Daikon\Entity\AttributeMap;
 use Daikon\Entity\Entity;
 use Daikon\Money\Entity\TransactionInterface;
-use Daikon\ValueObject\IntValue;
+use Daikon\ValueObject\Natural;
 use Daikon\ValueObject\Text;
 use Daikon\ValueObject\Timestamp;
 use NGUtech\Bitcoin\ValueObject\Hash;
@@ -32,9 +32,9 @@ final class LightningInvoice extends Entity implements TransactionInterface
             Attribute::define('amount', Bitcoin::class),
             Attribute::define('label', Text::class),
             Attribute::define('description', Text::class),
-            Attribute::define('expiry', IntValue::class),
-            Attribute::define('cltvExpiry', IntValue::class),
-            Attribute::define('blockHeight', IntValue::class),
+            Attribute::define('expiry', Natural::class),
+            Attribute::define('cltvExpiry', Natural::class),
+            Attribute::define('blockHeight', Natural::class),
             Attribute::define('state', InvoiceState::class),
             Attribute::define('createdAt', Timestamp::class),
             Attribute::define('settledAt', Timestamp::class),
@@ -81,22 +81,22 @@ final class LightningInvoice extends Entity implements TransactionInterface
         return $this->get('description') ?? Text::makeEmpty();
     }
 
-    public function getExpiry(): IntValue
+    public function getExpiry(): Natural
     {
-        return $this->get('expiry') ?? IntValue::fromNative(86400);
+        return $this->get('expiry') ?? Natural::fromNative(86400);
     }
 
-    public function getCltvExpiry(): IntValue
+    public function getCltvExpiry(): Natural
     {
-        return $this->get('cltvExpiry') ?? IntValue::fromNative(10);
+        return $this->get('cltvExpiry') ?? Natural::fromNative(10);
     }
 
-    public function getBlockHeight(): IntValue
+    public function getBlockHeight(): Natural
     {
-        return $this->get('blockHeight') ?? IntValue::makeEmpty();
+        return $this->get('blockHeight') ?? Natural::makeEmpty();
     }
 
-    public function getExpiryHeight(): IntValue
+    public function getExpiryHeight(): Natural
     {
         //@todo handle error cases
         return $this->getBlockHeight()->add($this->getCltvExpiry());

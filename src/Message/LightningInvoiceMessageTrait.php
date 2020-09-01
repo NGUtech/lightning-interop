@@ -9,7 +9,7 @@
 namespace NGUtech\Lightning\Message;
 
 use Daikon\Interop\Assertion;
-use Daikon\ValueObject\IntValue;
+use Daikon\ValueObject\Natural;
 use Daikon\ValueObject\Text;
 use Daikon\ValueObject\Timestamp;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
@@ -31,7 +31,7 @@ trait LightningInvoiceMessageTrait
 
     private ?Timestamp $timestamp;
 
-    private ?IntValue $cltvExpiry;
+    private ?Natural $cltvExpiry;
 
     /** @param array $state */
     public static function fromNative($state): self
@@ -47,7 +47,7 @@ trait LightningInvoiceMessageTrait
             $state['amount'] ? Bitcoin::fromNative($state['amount']) : null,
             $state['amountPaid'] ? Bitcoin::fromNative($state['amountPaid']) : null,
             $state['timestamp'] ? Timestamp::fromNative($state['timestamp']) : null,
-            $state['cltvExpiry'] ? IntValue::fromNative($state['cltvExpiry']) : null
+            $state['cltvExpiry'] ? Natural::fromNative($state['cltvExpiry']) : null
         );
     }
 
@@ -86,7 +86,7 @@ trait LightningInvoiceMessageTrait
         return $this->timestamp;
     }
 
-    public function getCltvExpiry(): ?IntValue
+    public function getCltvExpiry(): ?Natural
     {
         return $this->cltvExpiry;
     }
@@ -113,7 +113,7 @@ trait LightningInvoiceMessageTrait
         Bitcoin $amount = null,
         Bitcoin $amountPaid = null,
         Timestamp $timestamp = null,
-        IntValue $cltvExpiry = null
+        Natural $cltvExpiry = null
     ) {
         $this->preimage = $preimage;
         $this->preimageHash = $preimageHash;

@@ -30,6 +30,7 @@ final class LightningPayment extends Entity implements TransactionInterface
             Attribute::define('request', Request::class),
             Attribute::define('destination', Text::class),
             Attribute::define('amount', Bitcoin::class),
+            Attribute::define('amountPaid', Bitcoin::class),
             Attribute::define('feeLimit', FloatValue::class),
             Attribute::define('feeEstimate', Bitcoin::class),
             Attribute::define('feeSettled', Bitcoin::class),
@@ -68,6 +69,11 @@ final class LightningPayment extends Entity implements TransactionInterface
     public function getAmount(): Bitcoin
     {
         return $this->get('amount') ?? Bitcoin::makeEmpty();
+    }
+
+    public function getAmountPaid(): Bitcoin
+    {
+        return $this->get('amountPaid') ?? Bitcoin::makeEmpty();
     }
 
     public function getFeeLimit(): FloatValue

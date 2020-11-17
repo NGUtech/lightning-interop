@@ -30,6 +30,7 @@ final class LightningInvoice extends Entity implements TransactionInterface
             Attribute::define('request', Request::class),
             Attribute::define('destination', Text::class),
             Attribute::define('amount', Bitcoin::class),
+            Attribute::define('amountPaid', Bitcoin::class),
             Attribute::define('label', Text::class),
             Attribute::define('description', Text::class),
             Attribute::define('expiry', Natural::class),
@@ -69,6 +70,11 @@ final class LightningInvoice extends Entity implements TransactionInterface
     public function getAmount(): Bitcoin
     {
         return $this->get('amount') ?? Bitcoin::makeEmpty();
+    }
+
+    public function getAmountPaid(): Bitcoin
+    {
+        return $this->get('amountPaid') ?? Bitcoin::makeEmpty();
     }
 
     public function getLabel(): Text

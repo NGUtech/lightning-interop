@@ -15,6 +15,7 @@ use Daikon\Money\Entity\TransactionInterface;
 use Daikon\ValueObject\Natural;
 use Daikon\ValueObject\Text;
 use Daikon\ValueObject\Timestamp;
+use NGUtech\Bitcoin\Service\SatoshiCurrencies;
 use NGUtech\Bitcoin\ValueObject\Hash;
 use NGUtech\Bitcoin\ValueObject\Bitcoin;
 use NGUtech\Lightning\ValueObject\InvoiceState;
@@ -22,6 +23,9 @@ use NGUtech\Lightning\ValueObject\Request;
 
 final class LightningInvoice extends Entity implements TransactionInterface
 {
+    public const AMOUNT_MIN = '1'.SatoshiCurrencies::MSAT;
+    public const AMOUNT_MAX = '4294967295'.SatoshiCurrencies::MSAT;
+
     public static function getAttributeMap(): AttributeMap
     {
         return new AttributeMap([

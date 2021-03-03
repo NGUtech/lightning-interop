@@ -42,12 +42,12 @@ trait LightningInvoiceMessageTrait
         return new self(
             Hash::fromNative($state['preimage'] ?? null),
             Hash::fromNative($state['preimageHash']),
-            $state['request'] ? Text::fromNative($state['request']) : null,
-            $state['label'] ? Text::fromNative($state['label']) : null,
-            $state['amount'] ? Bitcoin::fromNative($state['amount']) : null,
-            $state['amountPaid'] ? Bitcoin::fromNative($state['amountPaid']) : null,
-            $state['timestamp'] ? Timestamp::fromNative($state['timestamp']) : null,
-            $state['cltvExpiry'] ? Natural::fromNative($state['cltvExpiry']) : null
+            isset($state['request']) ? Text::fromNative($state['request']) : null,
+            isset($state['label']) ? Text::fromNative($state['label']) : null,
+            isset($state['amount']) ? Bitcoin::fromNative($state['amount']) : null,
+            isset($state['amountPaid']) ? Bitcoin::fromNative($state['amountPaid']) : null,
+            isset($state['timestamp']) ? Timestamp::fromNative($state['timestamp']) : null,
+            isset($state['cltvExpiry']) ? Natural::fromNative($state['cltvExpiry']) : null
         );
     }
 

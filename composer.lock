@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8809116ed387c873f1d2c86c921e4741",
+    "content-hash": "2b7219444fc70f9708ec9cf7bbe58d73",
     "packages": [
         {
             "name": "aura/router",
@@ -3045,12 +3045,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NGUtech/bitcoin-interop.git",
-                "reference": "62feadbd5f65b3700983be72027bca186287da02"
+                "reference": "c2e3d33641b67d84087a2753b4ba0af1abbd5eff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NGUtech/bitcoin-interop/zipball/62feadbd5f65b3700983be72027bca186287da02",
-                "reference": "62feadbd5f65b3700983be72027bca186287da02",
+                "url": "https://api.github.com/repos/NGUtech/bitcoin-interop/zipball/c2e3d33641b67d84087a2753b4ba0af1abbd5eff",
+                "reference": "c2e3d33641b67d84087a2753b4ba0af1abbd5eff",
                 "shasum": ""
             },
             "require": {
@@ -3060,7 +3060,7 @@
                 "daikon/money-interop": "master@dev",
                 "daikon/value-object": "master@dev",
                 "moneyphp/money": "^3.2",
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.3",
@@ -3092,7 +3092,7 @@
                 "issues": "https://github.com/NGUtech/bitcoin-interop/issues",
                 "source": "https://github.com/NGUtech/bitcoin-interop/tree/master"
             },
-            "time": "2022-11-26T13:35:43+00:00"
+            "time": "2022-11-26T13:39:34+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",
@@ -8434,7 +8434,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0"
+        "php": "^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
